@@ -15,9 +15,9 @@ static const char* ProgramVersion = VERSION(BUILDNUM);
 #if defined(_DEBUG)
 static const char* ProgramConfig = "Debug";
 #elif defined(NDEBUG)
-static const char* ProgramConfig = _T("Release");
+static const char* ProgramConfig = "Release";
 #else
-static const char* ProgramConfig = _T("Undefined");
+static const char* ProgramConfig = "Undefined";
 #endif
 #if defined(_M_IX86)
 static const char* ProgramPlatform = "x86";
