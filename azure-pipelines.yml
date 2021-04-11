@@ -8,12 +8,20 @@ name: $(TeamProject)_$(Build.DefinitionName)_$(Build.SourceVersion)
 trigger:
 - main
 
+strategy:
+  matrix:
+    x86:
+      PlatformName: 'x86'
+    x64:
+      PlatformName: 'x64'
+
+
 pool:
   vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'x86'
+  buildPlatform: $(PlatformName)
   buildConfiguration: 'Release'
 
 steps:

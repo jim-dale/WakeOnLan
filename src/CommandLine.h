@@ -72,7 +72,14 @@ public:
 
 	static void ShowVersion()
 	{
-		printf("%s %s-%s-%s\n\n", ProgramName, ProgramVersion, ProgramPlatform, ProgramConfig);
+		std::string shortGitHash(GitHash);
+
+		if (shortGitHash.length() > SHORTGITHASHLEN)
+		{
+			shortGitHash = shortGitHash.substr(shortGitHash.length() - SHORTGITHASHLEN);
+		}
+
+		printf("%s %s-%s-%s-%s (%s)\n\n", ProgramName, ProgramVersion, shortGitHash.c_str(), ProgramPlatform, ProgramConfig, GitHash);
 	}
 
 	static void ShowError(const AppArguments& args)

@@ -7,10 +7,13 @@
 #define STRINGIFY2(x) #x
 #define STRINGIFY(x) STRINGIFY2(x)
 
-#define VERSION(x) "1.0.0-" STRINGIFY(x)
+#define SHORTGITHASHLEN 8
+
+#define VERSION "1.0.1"
 
 static const char* ProgramName = "WakeOnLan";
-static const char* ProgramVersion = VERSION(BUILDNUM);
+static const char* ProgramVersion = VERSION;
+static const char* GitHash = STRINGIFY(BUILDNUM);
 
 #if defined(_DEBUG)
 static const char* ProgramConfig = "Debug";
