@@ -4,9 +4,9 @@
 #define STRINGIFY(x) STRINGIFY2(x)
 
 // test if a defined macro has no value
-#define DO_EXPAND(x) x ## 1
-#define EXPAND(x) DO_EXPAND(x)
-#define MACRO_HAS_NO_VALUE(x) (EXPAND(x) == 1)
+#define __DO_EXPAND(x) x ## 1
+#define __EXPAND(x) __DO_EXPAND(x)
+#define MACRO_HAS_NO_VALUE(x) (__EXPAND(x) == 1)
 
 #define SHORTGITHASHLEN 8
 
