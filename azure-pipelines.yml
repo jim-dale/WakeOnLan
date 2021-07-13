@@ -41,11 +41,12 @@ steps:
     targetFolder: '$(Build.ArtifactStagingDirectory)\ToPublish'
 
 - task: ArchiveFiles@2
+  displayName: 'Creating archive: $(Build.ArtifactStagingDirectory)\$(Build.BuildNumber)-$(buildPlatform)-$(buildConfiguration).zip'
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)\bin\$(buildPlatform)\$(buildConfiguration)\*.exe'
-    includeRootFolder: true
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)\ToPublish'
+    includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-$(buildPlatform)-$(buildConfiguration).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)\$(Build.BuildNumber)-$(buildPlatform)-$(buildConfiguration).zip'
     replaceExistingArchive: true
 
 - task: PublishPipelineArtifact@1
