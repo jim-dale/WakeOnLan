@@ -1,19 +1,15 @@
 #pragma once
 
-#ifndef BUILDNUM
-#define BUILDNUM NotSet
-#endif
-
 #define STRINGIFY2(x) #x
 #define STRINGIFY(x) STRINGIFY2(x)
 
 #define SHORTGITHASHLEN 8
-
-#define VERSION "1.0.1"
+#define CHECK_SOURCEVERSION NOTSET
+static const char* Check_SourceVersion = STRINGIFY(-CHECK_SOURCEVERSION-);
 
 static const char* ProgramName = "WakeOnLan";
-static const char* ProgramVersion = VERSION;
-static const char* GitHash = STRINGIFY(BUILDNUM);
+static const char* ProgramVersion = "1.0.1";
+static const char* GitHash = STRINGIFY(BUILD_SOURCEVERSION-CHECK_SOURCEVERSION-);
 
 #if defined(_DEBUG)
 static const char* ProgramConfig = "Debug";

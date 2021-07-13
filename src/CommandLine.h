@@ -72,14 +72,21 @@ public:
 
 	static void ShowVersion()
 	{
-		std::string shortGitHash(GitHash);
+		std::string notSet(Check_SourceVersion);
 
+		std::string gitHash(GitHash);
+		if (gitHash.compare(notSet) != 0 && gitHash.length() > notSet.length())
+		{
+			gitHash = gitHash.substr(0, gitHash.length() - notSet.length());
+		}
+
+		std::string shortGitHash(gitHash);
 		if (shortGitHash.length() > SHORTGITHASHLEN)
 		{
 			shortGitHash = shortGitHash.substr(shortGitHash.length() - SHORTGITHASHLEN);
 		}
 
-		printf("%s %s-%s-%s-%s (%s)\n\n", ProgramName, ProgramVersion, shortGitHash.c_str(), ProgramPlatform, ProgramConfig, GitHash);
+		printf("%s %s-%s-%s-%s (%s)\n\n", ProgramName, ProgramVersion, shortGitHash.c_str(), ProgramPlatform, ProgramConfig, gitHash.c_str());
 	}
 
 	static void ShowError(const AppArguments& args)
@@ -136,7 +143,7 @@ private:
 
 		if (port >= 0 && port <= 0xffff)
 		{
-			args.port = port;
+			args.port = static_cast<USHORT>(port);
 		}
 		else
 		{

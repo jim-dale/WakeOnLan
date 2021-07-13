@@ -15,7 +15,6 @@ strategy:
     x64:
       PlatformName: 'x64'
 
-
 pool:
   vmImage: 'windows-latest'
 
@@ -30,7 +29,16 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '-p:BUILD_BUILDNUMBER=$(Build.SourceVersion)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)\ToPublish'
+  inputs:
+    contents: |
+      LICENSE
+      README.md
+      bin\$(buildPlatform)\$(buildConfiguration)\*.exe
+    flattenFolders: true
+    targetFolder: '$(Build.ArtifactStagingDirectory)\ToPublish'
 
 - task: ArchiveFiles@2
   inputs:
@@ -40,10 +48,9 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-$(buildPlatform)-$(buildConfiguration).zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifact: drop-$(buildPlatform)'
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'drop'
-    publishLocation: 'Container'
-
+    targetPath: '$(Build.ArtifactStagingDirectory)\$(Build.BuildNumber)-$(buildPlatform)-$(buildConfiguration).zip'
+    artifactType: pipeline
+    artifactName: 'drop-$(buildPlatform)'
