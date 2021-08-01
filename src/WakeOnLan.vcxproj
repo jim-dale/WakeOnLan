@@ -73,23 +73,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(PlatformTarget)\</OutDir>
+    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(PlatformTarget)\</OutDir>
+    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(PlatformTarget)\</OutDir>
+    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(PlatformTarget)\</OutDir>
+    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -152,6 +152,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="WakeOnLan.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="AppArguments.h" />
     <ClInclude Include="AppMetadata.h" />
     <ClInclude Include="CommandLine.h" />
@@ -161,9 +164,6 @@
     <ClInclude Include="UdpClient.h" />
     <ClInclude Include="WakeOnLanClient.h" />
     <ClInclude Include="WinsockHelper.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="WakeOnLan.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
